@@ -3,31 +3,42 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const messages: string[] = [
+  "I have been clicked",
+  "Cool, you clicked me.",
+  "Wow, you know how a button works.",
+  "Okay, fine, you clicked me again.",
+  "Are you really still clicking me?",
+  "Seriously? Again?",
+  "This is getting old now.",
+  "Why do you keep doing this?",
+  "STOP clicking me, seriously!",
+  "I warned you. Enough!",
+  "Thats it, I'm leaving.",
+  "Goodbye..."
 
+];
+function App() {
+
+  const [isClicked, setIsClicked]= useState(false)
+  const [message, setMessage]= useState<String>()
+  const [messageIndex, setMessageIndex]= useState<Number>(0)
+  const onButtonClick =()=> {
+    console.log("I have been clicked")
+
+  setIsClicked(!isClicked)
+  setMessage(messages[messageIndex])
+  
+  }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1 style={{color:"#a31aed"}}>Hello World
+      </h1>
+      <button onClick={onButtonClick}>CLICK ME</button>
+      {isClicked && (
+        <p>{message}</p>
+
+      )}
     </>
   )
 }
